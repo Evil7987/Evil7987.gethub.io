@@ -6,6 +6,38 @@
     <title>صفحة تواصل</title>
     <link rel="stylesheet" href="con styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* تنسيق الزر */
+        .show-email-btn {
+            padding: 10px 20px;
+            background-color: #F05139;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .show-email-btn:hover {
+            background-color: #b82f1a;
+        }
+
+        /* تنسيق البريد الإلكتروني */
+        .email-container {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+
+        .email-container span {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #F05139;
+        }
+    </style>
 </head>
 <body>
 
@@ -36,11 +68,37 @@
         <div class="shooting-star"></div>
         <div class="shooting-star"></div>
     </div>
+
     <div class="contact-box">
         <h2>وسيلة تواصل</h2>
-        <p>للتواصل معنا، يرجى إرسال رسالة عبر البريد الإلكتروني.</p>
-        <!-- أو فتح Gmail مباشرة -->
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sd7995806@gmail.com&su=استفسار&body=مرحبًا، لدي استفسار بخصوص..." target="_blank">إرسال بريد الكتروني</a>
+        <p>للتواصل معنا، يرجى الضغط على الزر لعرض البريد الإلكتروني.</p>
+        
+        <!-- زر لإظهار البريد الإلكتروني -->
+        <button class="show-email-btn" id="showEmailBtn">عرض البريد الإلكتروني</button>
+
+        <!-- البريد الإلكتروني الذي سيتم نسخه عند الضغط -->
+        <div class="email-container" id="emailContainer">
+            <p>البريد الإلكتروني: <span id="email">sd7995806@gmail.com</span></p>
+        </div>
     </div>
+
+    <script>
+        // تعريف العناصر
+        const showEmailBtn = document.getElementById('showEmailBtn');
+        const emailContainer = document.getElementById('emailContainer');
+        const email = document.getElementById('email');
+
+        // وظيفة لإظهار البريد الإلكتروني عند الضغط
+        showEmailBtn.addEventListener('click', function() {
+            emailContainer.style.display = 'block';  // إظهار البريد الإلكتروني
+        });
+
+        // وظيفة لنسخ البريد الإلكتروني عند النقر عليه
+        email.addEventListener('click', function() {
+            navigator.clipboard.writeText(email.textContent)  // نسخ البريد
+                .then(() => alert('تم نسخ البريد الإلكتروني بنجاح!'))
+                .catch(err => alert('حدث خطأ أثناء نسخ البريد الإلكتروني: ' + err));
+        });
+    </script>
 </body>
 </html>
