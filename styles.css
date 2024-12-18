@@ -1,0 +1,427 @@
+/* إعدادات عامة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(90deg, #F05139, #F7B7A3); /* تأثير خلفية مع اللون الأساسي */
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+  margin: 20px;
+}
+
+/* المربعات العائمة */
+.floating-boxes {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  margin-bottom: 90px;
+}
+
+.floating-box {
+  width: 450px;
+  height: 270px;
+  position: relative;
+  background-color: #2d3a3de6; /* استخدام اللون #2D3A3D */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* إضافة الظل خلف المربع */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #ffffff4d  /* إضافة الإطار الأبيض حول المربع */
+}
+
+.floating-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;  /* لضمان أن الإطار الأبيض يلتف حول الصورة بشكل صحيح */
+}
+
+.floating-box:hover {
+  transform: translateY(-10px) scale(1.05); /* إضافة تكبير عند التمرير */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.floating-box:hover img {
+  transform: scale(1.1); /* تكبير الصورة عند التمرير */
+}
+
+
+.lang-content {
+  display: none; /* إخفاء النصوص الافتراضية */
+}
+
+.lang-content.active {
+  display: block; /* عرض النصوص النشطة فقط */
+}
+
+/* شريط التنقل */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #2d3a3de6; /* استخدام اللون #2D3A3D */
+  position: fixed;
+  width: 30%;
+  height: 58px;
+  top: 0;
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); /* إضافة ظل للشريط */
+  border-radius: 10px;
+  backdrop-filter: blur(8px); /* ضبابية للخلفية */
+  -webkit-backdrop-filter: blur(8px); /* دعم Safari */
+  border: 2px solid #ffffff4d; /* إطار شبه شفاف */
+}
+
+.navbar .logo img {
+  width: 80px; /* تحديد العرض الثابت للشعار */
+  height: auto; /* الحفاظ على النسبة بين العرض والارتفاع */
+  object-fit: contain; /* الحفاظ على تناسق الأبعاد */
+}
+
+.navbar .logo {
+  order: -1; /* ترتيب الشعار ليظهر في اليسار */
+  flex-shrink: 0; /* منع انكماش الشعار */
+}
+
+/* إخفاء الشعار على الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .navbar .logo {
+    display: none; /* إخفاء الشعار في الهواتف */
+  }
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  margin: 0 15px;
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #F2C94C; /* استخدام لون مميز عند التمرير */
+  transform: scale(1.04); /* تكبير النص عند التمرير */
+}
+
+
+/* لتصغير الحجم على الشاشات الصغيرة */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;  /* تغيير التوجيه من أفقي إلى عمودي */
+    padding: 3px 15px;  /* تقليل المسافة */
+    left: 7%;
+    width: 10%;
+  }
+
+  .navbar a {
+    margin: 3px 0; /* زيادة المسافة بين العناصر */
+    font-size: .8em; /* تقليل حجم النص */
+    display: none; /* إخفاء الروابط على الموبايل */
+  }
+
+  /* زر القائمة المنسدلة للموبايل */
+  .mobile-menu-icon {
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+  }
+
+  /* تصميم القائمة المنسدلة على الموبايل */
+  .mobile-nav {
+    display: none;
+    background-color: #0000002c;
+    position: fixed;
+    top: 60px;
+    right: 10%;
+    left: 10%;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 9999;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.726);
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
+    color: white;
+    font-size: .9em;
+    transition: background-color 0.001s;
+  }
+
+  .mobile-nav a:hover {
+    background-color: #F2C94C;
+    color: black;
+  }  
+}
+
+/* القائمة المنسدلة */
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 5px 50px;
+  background-color: #2d3a3d00; /* استخدام اللون #2D3A3D */
+  font-family: inherit;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color 0.001s;
+}
+
+/* القائمة المنسدلة */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2d3a3dcc; /* استخدام اللون #2D3A3D */
+  min-width: 160px;
+  top: 100%;
+  left: 0;
+  right: auto;
+  z-index: 9999;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.726);
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #F2C94C; /* تغيير لون hover للقائمة المنسدلة */
+  color: rgba(0, 0, 0, 0.329);
+
+}
+
+/* إظهار القائمة المنسدلة عند التمرير فوق الزر */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* القسم الرئيسي */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url('Image/Back.webp') no-repeat center center/cover;
+}
+
+.hero h1 {
+  font-size: 3.5em;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  font-size: 1.5em;
+  margin: 20px 0;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* تأثير النيون على الزر مع اللون المعدل */
+.hero button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: none;
+  background: #F05139; /* تعديل اللون إلى الذهبي الفاتح */
+  color: #2d3a3dcc;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 0 20px #F05139, 0 0 30px #ff3c1e, 0 0 40px #ff2807; /* تغيير النيون إلى وردي فاتح */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* تأثير النيون عند المرور على الزر */
+.hero button:hover {
+  transform: scale(1.1); /* تكبير الزر عند المرور */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+}
+
+
+/* إخفاء القوائم بشكل افتراضي */
+.dropdown-content,
+.mobile-nav {
+  display: none;
+  background-color: #2d3a3dcc; /* استخدام اللون #2D3A3D */
+  position: fixed;
+  z-index: 9999;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* الروابط داخل القائمة المنسدلة */
+.dropdown-content a,
+.mobile-nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  text-align: center;
+}
+
+.dropdown-content a:hover,
+.mobile-nav a:hover {
+  background-color: #F05139; /* تغيير لون hover إلى اللون الأساسي */
+  color: black;
+}
+
+/* تحديد موقع القائمة المنسدلة */
+#languageDropdown {
+  top: 100%;
+  right: 0;
+  min-width: 160px;
+}
+
+/* قائمة التنقل على الموبايل */
+.mobile-nav {
+  top: 60px;
+  right: 10%;
+  left: 10%;
+  text-align: center;
+}
+
+/* قائمة الروابط المنسدلة */
+.mobile-menu {
+  display: none; /* إخفاء افتراضيًا */
+  position: fixed; /* لجعلها تتحرك مع الشاشة */
+  top: 60px; /* لتظهر أسفل شريط التنقل */
+  right: 10px; /* محاذاة يمين */
+  background: #0000002c;
+  z-index: 9999; /* فوق كل العناصر */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: 200px; /* تحديد العرض */
+  text-align: center;
+}
+
+/* الروابط داخل القائمة */
+.mobile-menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  font-size: .9em;
+  transition: background-color 0.001s, color 0.001s;
+}
+
+.mobile-menu a:hover {
+  background-color: #F05139; /* تغيير لون hover إلى اللون الأساسي */
+  color: black;
+}
+
+/* أيقونة القائمة */
+.mobile-menu-icon {
+  display: none; /* إظهارها فقط على الشاشات الصغيرة */
+  font-size: 1.2em;
+  cursor: pointer;
+  color: white;
+}
+
+/* إظهار القائمة عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: none; /* تتحكم JavaScript في الإظهار */
+  }
+
+  .mobile-menu-icon {
+    display: block; /* تظهر الأيقونة فقط */
+  }
+}  
+
+/* مثال لتأثير Fade-In عند التمرير */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hero button {
+  animation: pulse 2s infinite; /* تطبيق تأثير النبض على الزر */
+}
+
+.navbar a:hover {
+  animation: pulse 2s infinite; /* تطبيق تأثير النبض على الزر */
+}
+
+.floating-box:hover {
+  animation: pulse 2s infinite; /* تطبيق تأثير النبض على الزر */
+}
+
+/* تخصيص المربعات العائمة للشاشات الصغيرة */
+@media only screen and (max-width: 768px) {
+  .floating-boxes {
+    flex-direction: column;  /* ترتيب المربعات عموديًا */
+    align-items: center;  /* محاذاة المربعات في المنتصف */
+  }
+
+  .floating-box {
+    width: 90%;  /* تقليل العرض ليكون 90% من العرض الكامل */
+    height: 0;
+    padding-bottom: 56.25%;  /* الحفاظ على نسبة العرض إلى الارتفاع 16:9 */
+    margin-bottom: 20px;  /* إضافة جاب بين المربعات */
+    position: relative;  /* السماح لوضع الصورة داخل المربع */
+    border: 3px solid #ffffff4d;  /* إضافة الإطار الأبيض حول المربع */
+  }
+
+  .floating-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* لضبط الصورة بشكل جيد داخل المربع */
+    border-radius: 15px;
+    box-sizing: border-box;  /* لضمان أن الإطار الأبيض يلتف حول الصورة بشكل صحيح */
+  }
+}

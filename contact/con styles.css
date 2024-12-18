@@ -1,0 +1,248 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f1618;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #2d3a3de6; /* استخدام اللون #2D3A3D */
+  position: fixed;
+  width: 20%;
+  height: 58px;
+  top: 0;
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); /* إضافة ظل للشريط */
+  border-radius: 10px;
+  backdrop-filter: blur(8px); /* ضبابية للخلفية */
+  -webkit-backdrop-filter: blur(8px); /* دعم Safari */
+  border: 2px solid #ffffff4d; /* إطار شبه شفاف */
+}
+
+.navbar .logo img {
+  width: 80px; /* تحديد العرض الثابت للشعار */
+  height: auto; /* الحفاظ على النسبة بين العرض والارتفاع */
+  object-fit: contain; /* الحفاظ على تناسق الأبعاد */
+}
+
+.navbar .logo {
+  order: -1; /* ترتيب الشعار ليظهر في اليسار */
+  flex-shrink: 0; /* منع انكماش الشعار */
+}
+
+.navbar a {
+  font-family: 'Roboto', sans-serif; /* ضع اسم الخط هنا */  
+  text-decoration: none;
+  color: white;
+  margin: 0 15px;
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #F2C94C; /* استخدام لون مميز عند التمرير */
+  transform: scale(1.04); /* تكبير النص عند التمرير */
+}
+
+/* عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 7px 15px; /* تقليل الحشو */
+    width: 100%; /* جعل الشريط يمتد بالكامل */
+  }
+
+  .navbar a {
+    font-size: 1em; /* تقليل حجم النص */
+  }
+
+  .navbar .logo {
+    order: -1; /* جعل الشعار يظهر في الأعلى */
+    margin-bottom: 10px; /* مسافة بين الشعار والروابط */
+  }
+}
+
+.starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* النجوم الكرتونية المتناثرة */
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+.star:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  width: 3px;
+  height: 3px;
+  animation-duration: 2s;
+}
+.star:nth-child(2) {
+  top: 40%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  animation-duration: 2.5s;
+}
+.star:nth-child(3) {
+  top: 60%;
+  left: 70%;
+  width: 5px;
+  height: 5px;
+  animation-duration: 1.5s;
+}
+.star:nth-child(4) {
+  top: 30%;
+  left: 80%;
+  width: 6px;
+  height: 6px;
+  animation-duration: 3s;
+}
+.star:nth-child(5) {
+  top: 50%;
+  left: 20%;
+  width: 4px;
+  height: 4px;
+  animation-duration: 2.7s;
+}
+.star:nth-child(6) {
+  top: 10%;
+  left: 80%;
+  width: 3px;
+  height: 3px;
+  animation-duration: 3.2s;
+}
+.star:nth-child(7) {
+  top: 70%;
+  left: 40%;
+  width: 2px;
+  height: 2px;
+  animation-duration: 1.8s;
+}
+.star:nth-child(8) {
+  top: 80%;
+  left: 60%;
+  width: 5px;
+  height: 5px;
+  animation-duration: 2.3s;
+}
+.star:nth-child(9) {
+  top: 40%;
+  left: 10%;
+  width: 3px;
+  height: 3px;
+  animation-duration: 2.6s;
+}
+.star:nth-child(10) {
+  top: 60%;
+  left: 90%;
+  width: 4px;
+  height: 4px;
+  animation-duration: 2s;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* الأنيميشن للشهب المتحركة */
+.shooting-star {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-top: 2px solid white;
+  border-left: 10px solid white;
+  animation: shooting 2s linear infinite;
+  opacity: 1;
+}
+
+@keyframes shooting {
+  0% {
+      top: -50px;
+      left: 50%;
+      transform: rotate(45deg);
+      opacity: 1;
+  }
+  100% {
+      top: 100%;
+      left: 100%;
+      transform: rotate(45deg);
+      opacity: 0;
+  }
+}
+
+/* المربع العائم في وسط الصفحة */
+.contact-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #14191b;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 10;
+}
+
+.contact-box h2 {
+  color: aliceblue;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.contact-box p {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.contact-box p {
+  color: aliceblue;
+}
+
+.contact-box a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #F05139;
+  color: #0f1618;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.contact-box a:hover {
+  background-color: #ff4353;
+}
+
+.navbar a:hover {
+  animation: pulse 2s infinite; /* تطبيق تأثير النبض على الزر */
+}
